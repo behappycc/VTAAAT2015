@@ -1,0 +1,8 @@
+{
+    "userName" : "hubert",
+    "appPackageName":"com.orangefish.app.delicacy",
+    "firstActivityName":"com.orangefish.app.delicacy.main.InitPage",
+    "serialNumber":"HT53EYC00527",
+    "algorithm":"monkey",
+    "sleepTime":1000
+}

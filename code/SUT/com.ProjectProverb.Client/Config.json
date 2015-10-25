@@ -1,0 +1,8 @@
+{
+    "userName" : "hubert",
+    "appPackageName":"com.ProjectProverb.Client",
+    "firstActivityName":"com.ProjectProverb.Client.Client",
+    "serialNumber":"HT53EYC00527",
+    "algorithm":"monkey",
+    "sleepTime":1000
+}

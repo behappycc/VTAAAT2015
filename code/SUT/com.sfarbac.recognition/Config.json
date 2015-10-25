@@ -1,0 +1,8 @@
+{
+    "userName" : "hubert",
+    "appPackageName":"com.sfarbac.recognition",
+    "firstActivityName":"com.sfarbac.recognition.MainActivity",
+    "serialNumber":"HT53EYC00527",
+    "algorithm":"monkey",
+    "sleepTime":1000
+}

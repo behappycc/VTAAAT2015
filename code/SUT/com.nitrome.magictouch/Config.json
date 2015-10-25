@@ -1,0 +1,8 @@
+{
+    "userName" : "hubert",
+    "appPackageName":"com.nitrome.magictouch",
+    "firstActivityName":"org.cocos2dx.cpp.AppActivity",
+    "serialNumber":"HT53EYC00527",
+    "algorithm":"monkey",
+    "sleepTime":1000
+}
