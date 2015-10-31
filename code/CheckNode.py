@@ -52,6 +52,13 @@ class CheckNode:
             else:
                 print 'modify removeType'
         return newNodeList
+
+    def CheckAd(self):
+        a = 'abc'
+        b = 'z'
+        if b in a:
+            print 'hi'
+
             
 if __name__ == '__main__':
     a = []
@@ -63,3 +70,4 @@ if __name__ == '__main__':
     x = CheckNode(a, '[4, 4][5,5]', 'removeInternalNode')
     x.initialNode()
     print x.removeNode()
+    x.CheckAd()

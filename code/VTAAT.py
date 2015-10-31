@@ -4,9 +4,6 @@ from AdbExecutor import AdbExecutor
 from ParseXML import ParseXML
 from ComputerVision import ComputerVision
 
-def main123():
-    testCV.test()
-
 #initial config in main and pass them to adbExecutor
 def main():
     config = SetConfig()

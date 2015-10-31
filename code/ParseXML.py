@@ -30,6 +30,12 @@ class ParseXML:
         return viewList
 
     def checkClickableButton(self, viewList):
+        #for bounds in self.clickableButtonList:
+        #bounds[0], bounds[1], bounds[2], bounds[3] -> bounds
+        #bounds[4] -> package
+        #bounds[5] -> resource-id
+        #bounds[6] -> class
+        #bounds[7] -> content-desc
         clickableXmlList = []
         for i, node in enumerate(viewList):
             listTempBounds = np.array([])
@@ -38,6 +44,9 @@ class ParseXML:
                 replacebounds = bounds.replace('][', ',').replace('[','').replace(']','')
                 tempbounds = replacebounds.split(',')
                 tempbounds.append(node[0].attrib['package'])
+                tempbounds.append(node[0].attrib['resource-id'])
+                tempbounds.append(node[0].attrib['class'])
+                tempbounds.append(node[0].attrib['content-desc'])
                 clickableXmlList.append(tempbounds)
         print clickableXmlList
         return clickableXmlList
@@ -58,7 +67,7 @@ class ParseXML:
             print name, rank
             
 if __name__ == '__main__':
-    x = ParseXML('uidump.xml')
+    x = ParseXML('0.xml')
     xml = x.readTree()
     x.checkClickableButton(xml)
 
