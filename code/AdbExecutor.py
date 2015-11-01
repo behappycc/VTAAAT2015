@@ -31,6 +31,7 @@ class AdbExecutor:
             adb = adb + 'keyevent 4'
 
         #using adb
+        time.sleep(2)
         os.system(adb)
 
     def restartAPP(self):
@@ -38,4 +39,3 @@ class AdbExecutor:
         os.system("adb -s "+self.serialNumber+" shell am force-stop "+self.appPackageName)
         os.system("adb -s "+self.serialNumber+" shell am start "+self.appPackageName+"/"+self.firstActivityName)
         time.sleep(4)
-

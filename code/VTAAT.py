@@ -12,7 +12,7 @@ def main():
     adb =  AdbExecutor(taskSetting)
 
     #choose initial restart 
-    #adb.restartAPP()
+    adb.restartAPP()
 
     #print adb.algorithm
     for i in xrange(5):
@@ -22,15 +22,22 @@ def main():
         xml = parseXML.readTree()
         clickableButtonList = parseXML.checkClickableButton(xml)
         computerVision = ComputerVision('0.xml', '0.png', clickableButtonList)
-        computerVision.drawBounds()
+        computerVision.drawBounds()    
         rAdClickableButtonLlist = computerVision.drawAdBounds()
 
         if taskSetting["algorithm"] == "monkey":
             from TestCaseGenerator import Monkey
             gen = Monkey()
-            testInput = gen.getTestInput(rAdClickableButtonLlist)
-            inputX = (int(testInput[0]) + int(testInput[2])) / 2
-            inputY = (int(testInput[1]) + int(testInput[3])) / 2
+            adAnswer, adBounds = computerVision.checkInterstitial()
+            #testInput = gen.getTestInput(rAdClickableButtonLlist)
+            testInput = gen.getTestInput(clickableButtonList)
+            if adAnswer == True:
+                inputX = (int(adBounds[0]) + int(adBounds[2])) / 2
+                inputY = (int(adBounds[1]) + int(adBounds[3])) / 2
+            else:
+                testInput = gen.getTestInput(rAdClickableButtonLlist)    
+                inputX = (int(testInput[0]) + int(testInput[2])) / 2
+                inputY = (int(testInput[1]) + int(testInput[3])) / 2
             
             if testInput[4] == adb.appPackageName:
                 computerVision.findContoursTest(clickableButtonList)

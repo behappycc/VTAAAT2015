@@ -52,14 +52,7 @@ class CheckNode:
             else:
                 print 'modify removeType'
         return newNodeList
-
-    def CheckAd(self):
-        a = 'abc'
-        b = 'z'
-        if b in a:
-            print 'hi'
-
-            
+        
 if __name__ == '__main__':
     a = []
     nodelist1 = [2,2,3,3]

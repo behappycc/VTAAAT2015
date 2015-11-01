@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 import cv2
 import shutil
 import os
@@ -104,6 +106,39 @@ class ComputerVision:
         else:
             boolAd = False
         return boolAd
+
+    def checkBanner(self):
+        adFlag = False
+        for attrib in self.clickableButtonList:
+            if ('ad' in attrib[5] or 'AD' in attrib[5]) and attrib[6] == 'android.webkit.WebView' and attrib[7] == u'網頁畫面':
+                adFlag = True
+        if adFlag == True:
+            #there are banner
+            return True
+        else:
+            return False
+
+    def checkInterstitial(self):
+        adFlag = False
+        adBounds = []
+        for attrib in self.clickableButtonList:
+            if attrib[6] == 'android.webkit.WebView' and attrib[7] == u'網頁畫面':
+                adFlag = True
+            elif attrib[7] == 'Interstitial close button':
+                adBounds.append(attrib[0])
+                adBounds.append(attrib[1])
+                adBounds.append(attrib[2])
+                adBounds.append(attrib[3])
+        print adFlag
+        print adBounds
+        return adFlag, adBounds
+
+    def checkBoundsSquare(self, x1, y1, x2, y2):
+        if (x1 - x2) == (y1 - y2):
+            #there are square
+            return True
+        else:
+            return False
 
     def findContoursTest(self, clickableButtonList):
         im = cv2.imread('0.png')
@@ -322,4 +357,5 @@ class ComputerVision:
 if __name__ == '__main__':
     x = ComputerVision(1, 2, 3)
     #print x.checkAdddd(123)
-    x.findContours()
+    #x.findContours()
+    x.checkBoundsSquare(3,3,5,5)
