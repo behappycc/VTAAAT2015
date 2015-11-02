@@ -1,7 +1,7 @@
 {
     "userName" : "hubert",
-    "appPackageName":"com.example.hubert.admob",
-    "firstActivityName":"com.example.hubert.admob.MainActivity",
+    "appPackageName":"net.mandaria.tippytipper",
+    "firstActivityName":"net.mandaria.tippytipperlibrary.activities.TippyTipper",
     "serialNumber":"HT53EYC00527",
     "algorithm":"monkey",
     "sleepTime":1000

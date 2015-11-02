@@ -18,10 +18,11 @@ from collections import OrderedDict
 # "Keyboard_Region":[0,732,720,452],
 
 class ComputerVision:
-    def __init__(self, xml, img, clickableButtonList):
+    def __init__(self, xml, img, clickableButtonList, appPackageName):
         self.xml = xml
         self.img = img
         self.clickableButtonList = clickableButtonList
+        self.appPackageName = appPackageName
 
     #draw xml clickable buttons
     def drawBounds(self):
@@ -122,15 +123,18 @@ class ComputerVision:
         adFlag = False
         adBounds = []
         for attrib in self.clickableButtonList:
-            if attrib[6] == 'android.webkit.WebView' and attrib[7] == u'網頁畫面':
+            #if attrib[6] == 'android.webkit.WebView' and attrib[7] == u'網頁畫面':
+            if attrib[6] == 'android.webkit.WebView':
                 adFlag = True
+                print adFlag
+                print attrib[6]
             elif attrib[7] == 'Interstitial close button':
                 adBounds.append(attrib[0])
                 adBounds.append(attrib[1])
                 adBounds.append(attrib[2])
                 adBounds.append(attrib[3])
-        print adFlag
-        print adBounds
+        print 'adFlag ' + str(adFlag)
+        print 'adBounds ' + str(adBounds)
         return adFlag, adBounds
 
     def checkBoundsSquare(self, x1, y1, x2, y2):
@@ -139,6 +143,70 @@ class ComputerVision:
             return True
         else:
             return False
+
+    def findContoursForNoClickable(self, clickableButtonList):
+        clickableXmlButtonList = self.clickableButtonList
+        im = cv2.imread('0.png')
+        drawBoundsImg = im
+        imgray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+        imgray = cv2.bilateralFilter(imgray, 11, 17, 17)
+        edged = cv2.Canny(imgray, 30, 200)
+        cv2.imwrite('canny.png',edged)
+        image, contours, hierarchy = cv2.findContours(edged,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
+        print 'origin ' + 'contours: ' + str(len(contours)) + ', ' + 'hierarchy: ' + str(len(hierarchy[0]))
+
+        #build tree
+        cn = CheckNode(123, '[0,48][720,1180]', 'removeExternalNode')
+        cn.initialNode()
+        tree = Tree()
+        tree.add_node('root')
+        listContours = []     
+        listPrintContours = [] #for tesing
+        for i in xrange(len(contours)):
+            tempCnt = []
+            cnt = contours[i]
+            hier = hierarchy[0][i]
+            area = cv2.contourArea(cnt)
+            x, y, w, h = cv2.boundingRect(cnt)
+            tempCnt.append(x)
+            tempCnt.append(y)
+            tempCnt.append(x + w)
+            tempCnt.append(y + h)
+            tempCnt.append(self.appPackageName)
+            listContours.append(tempCnt)
+            if cn.checkNodeInRegion(tempCnt[0:2],tempCnt[2:4]) == True:
+                if hier[3] ==  -1 and area > 600:
+                    #tree.add_node(str(tempCnt), 'root')
+                    listPrintContours.append(tempCnt)
+                    clickableButtonList.append(tempCnt)
+                elif hier[3] != -1 and area > 600:
+                    nodeParent = str(listContours[hier[3]])
+                    if nodeParent != str(tempCnt):
+                        #tree.add_node(str(tempCnt), nodeParent)
+                        listPrintContours.append(tempCnt)
+                        clickableButtonList.append(tempCnt)
+        #tree.display('root')
+        print 'remove small nodes and out of ROI nodes: ' + str(len(listPrintContours))
+        print clickableButtonList
+
+        
+        #draw xml
+        for i, bounds in enumerate(clickableXmlButtonList):
+            cv2.rectangle(drawBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (255, 0, 0), 5)
+            cv2.putText(drawBoundsImg,str(i),(int(bounds[0]),int(bounds[1])), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),3)
+        cv2.imwrite('12345.png', drawBoundsImg)        
+        
+        #draw contours
+        for i, bounds in enumerate(listPrintContours):
+            cv2.rectangle(drawBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (0, 255, 0), 2)
+            cv2.putText(drawBoundsImg,str(i),(int(bounds[0]),int(bounds[1])), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),3)
+        cv2.imwrite('12345.png', drawBoundsImg)
+        
+        
+        return clickableButtonList
+
+        
+
 
     def findContoursTest(self, clickableButtonList):
         im = cv2.imread('0.png')
