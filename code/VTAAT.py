@@ -15,7 +15,7 @@ def main():
     adb.restartAPP()
 
     #print adb.algorithm
-    for i in xrange(5):
+    for i in xrange(20):
         adb.uiDump()
         adb.screencapDump()
         parseXML = ParseXML('0.xml')
@@ -33,23 +33,26 @@ def main():
             
             clickableCvButtonList = computerVision.findContoursForNoClickable(clickableButtonList)
             testInput = gen.getTestInput(clickableCvButtonList)
-            if adFlag == True and len(adBounds) > 0:
-                inputX = (int(adBounds[0]) + int(adBounds[2])) / 2
-                inputY = (int(adBounds[1]) + int(adBounds[3])) / 2
-            else:   
-                inputX = (int(testInput[0]) + int(testInput[2])) / 2
-                inputY = (int(testInput[1]) + int(testInput[3])) / 2
-            
-            if testInput[4] == adb.appPackageName:
-                #computerVision.findContoursTest(clickableButtonList)
-                computerVision.compareState()
-                num = random.randint(0,99)
-                if num <= 10:
-                    adb.adbExecute('keyevent', inputX, inputY)
-                else:
-                    adb.adbExecute('click', inputX, inputY)
-            else:     
-                adb.restartAPP()
+            if testInput == 'empty':
+                adb.adbExecute('keyevent', 0, 0)
+            else:
+                if adFlag == True and len(adBounds) > 0:
+                    inputX = (int(adBounds[0]) + int(adBounds[2])) / 2
+                    inputY = (int(adBounds[1]) + int(adBounds[3])) / 2
+                else:   
+                    inputX = (int(testInput[0]) + int(testInput[2])) / 2
+                    inputY = (int(testInput[1]) + int(testInput[3])) / 2
+                
+                if clickableButtonList[0][4] == adb.appPackageName:
+                    #computerVision.findContoursTest(clickableButtonList)
+                    computerVision.compareState()
+                    num = random.randint(0,99)
+                    if num <= 10:
+                        adb.adbExecute('keyevent', inputX, inputY)
+                    else:
+                        adb.adbExecute('click', inputX, inputY)
+                else:     
+                    adb.restartAPP()
     #adb.restartAPP()
 
 if __name__ == '__main__':

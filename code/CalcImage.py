@@ -35,12 +35,17 @@ def pixelCompare(i1, i2, ratio):
             if imgray1[i, j] != imgray2[i, j]:
                 diff += 1
     compare = float(diff) / float((imgInfo[0] * imgInfo[1]))
-    print str(compare * 100) + '%'
+    #print str(compare * 100) + '%'
     if compare > ratio:
         #there are differnt
         return True
     else:
         return False
+
+def nodeCenter(node):
+    centerX = (float(node[0]) + float(node[2])) / 2
+    centerY = (float(node[1]) + float(node[3])) / 2
+    return centerX, centerY
 
 def euclideanDistance(x1, y1, x2, y2):
     return math.sqrt((x1-x2)**2 + (y1-y2)**2)
@@ -86,4 +91,6 @@ if __name__ == '__main__':
     sift.detect(img)
     '''
     pixelCompare('0.png', '123.png', 0.1)
-    print euclideanDistance(3,0,5,0)
+    print euclideanDistance(3,5,5,0)
+    a = [1,3,4,4]
+    print nodeCenter(a)

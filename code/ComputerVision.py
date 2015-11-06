@@ -8,6 +8,7 @@ import sys
 import numpy as np
 import math
 import random
+import copy
 import CalcImage as calc
 from CheckNode import CheckNode
 from HierarchyTree import Node, Tree
@@ -145,7 +146,7 @@ class ComputerVision:
             return False
 
     def findContoursForNoClickable(self, clickableButtonList):
-        clickableXmlButtonList = self.clickableButtonList
+        clickableXmlButtonList = copy.deepcopy(self.clickableButtonList)
         im = cv2.imread('0.png')
         drawBoundsImg = im
         imgray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
@@ -175,11 +176,11 @@ class ComputerVision:
             tempCnt.append(self.appPackageName)
             listContours.append(tempCnt)
             if cn.checkNodeInRegion(tempCnt[0:2],tempCnt[2:4]) == True:
-                if hier[3] ==  -1 and area > 600:
+                if hier[3] ==  -1 and area > 600 and self.removeRebundantNode(clickableXmlButtonList, tempCnt) == True:
                     #tree.add_node(str(tempCnt), 'root')
                     listPrintContours.append(tempCnt)
                     clickableButtonList.append(tempCnt)
-                elif hier[3] != -1 and area > 600:
+                elif hier[3] != -1 and area > 600 and self.removeRebundantNode(clickableXmlButtonList, tempCnt) == True:
                     nodeParent = str(listContours[hier[3]])
                     if nodeParent != str(tempCnt):
                         #tree.add_node(str(tempCnt), nodeParent)
@@ -201,12 +202,21 @@ class ComputerVision:
             cv2.rectangle(drawBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (0, 255, 0), 2)
             cv2.putText(drawBoundsImg,str(i),(int(bounds[0]),int(bounds[1])), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),3)
         cv2.imwrite('12345.png', drawBoundsImg)
-        
-        
+               
         return clickableButtonList
 
-        
-
+    def removeRebundantNode(self, listXmlNode, cvNode):
+        xmlX, xmlY, cvX, cvT = 0, 0, 0, 0
+        cvX, cvY = calc.nodeCenter(cvNode)
+        listFlag = []
+        for xmlNode in listXmlNode:
+            xmlX, xmlY = calc.nodeCenter(xmlNode)
+                        
+            if calc.euclideanDistance(xmlX, xmlY, cvX, cvY) > 10:
+                listFlag.append(True)
+            else:
+                listFlag.append(False)
+        return all(listFlag)
 
     def findContoursTest(self, clickableButtonList):
         im = cv2.imread('0.png')
@@ -336,9 +346,7 @@ class ComputerVision:
         imgFiles = [name for name in os.listdir(pathToStateData) if name.endswith('.png')]
         xmlFiles = [name for name in os.listdir(pathToStateData) if name.endswith('.xml')]
         txtFiles = [name for name in os.listdir('./state/') if name.endswith('.txt')]
-        print imgFiles
-        print xmlFiles
-        print txtFiles
+
         listCheckState = []
         for i in xrange(len(imgFiles)):
             listCheckState.append(calc.pixelCompare('0.png', pathToStateData + imgFiles[i], 0.1))
