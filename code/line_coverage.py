@@ -8,20 +8,7 @@ from AdbExecutor import AdbExecutor
 denominator = []
 numerator = []
 
-def init():
-    '''
-    # find aim apk
-    global apkname
-    apkname = input("Please type your APK name: ")
-    while (not os.path.isfile("./"+apkname+"/Denominator.txt")):
-        print("Wrong APK name")
-        apkname = input("Please type your APK name: ")
-    '''
-    config = SetConfig()
-    taskSetting = config.readJson()
-    adb =  AdbExecutor(taskSetting)
-    apkname = adb.appPackageName
-
+def init(apkname):
     print "---initalize--------------"
     # delete logcat
     os.system("adb logcat -c")
@@ -35,13 +22,10 @@ def init():
     # inital calculate
     global step
     step=0
-    calculate_line_coverage()
+    calculate_line_coverage(apkname)
 
-def calculate_line_coverage():
-    config = SetConfig()
-    taskSetting = config.readJson()
-    adb =  AdbExecutor(taskSetting)
-    apkname = adb.appPackageName
+def calculate_line_coverage(appPackageName):
+    apkname = appPackageName
     global apkname
     global step
         
@@ -72,9 +56,6 @@ def calculate_line_coverage():
     # step report
     #line_coverage = float(100*len(numerator)/len(denominator))
     line_coverage = 100*float(len(numerator))/len(denominator)
-    print 'hi' + str(len(numerator))
-    print 'yo' + str(len(denominator))
-
     increase = 100*(float(len(numerator))-before_numerator_number)/len(denominator)
     print "Line Coverage : "+str(line_coverage)+"%"
     print "increase : +"+str(increase)+"%"
@@ -129,5 +110,4 @@ def main():
     
 if __name__ == "__main__":
     main()
-
-
+    

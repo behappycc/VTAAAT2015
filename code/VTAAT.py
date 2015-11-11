@@ -14,7 +14,7 @@ def main():
     adb =  AdbExecutor(taskSetting)
 
     #initial
-    lc.init()
+    lc.init(adb.appPackageName)
 
     #choose initial restart 
     adb.restartAPP()
@@ -76,7 +76,7 @@ def main():
             else:
                 adb.restartAPP()
         time.sleep(2)
-        lc.calculate_line_coverage()
+        lc.calculate_line_coverage(adb.appPackageName)
 
     lc.repot()
     #adb.restartAPP()

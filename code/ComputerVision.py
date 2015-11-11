@@ -36,7 +36,7 @@ class ComputerVision:
     #draw xml clickable buttons and  ADs
     def drawAdBounds(self):
         drawAdBoundsImg = cv2.imread(self.img)
-        print drawAdBoundsImg.shape
+        #print drawAdBoundsImg.shape
         rAdClickableButtonLlist = []
         for bounds in self.clickableButtonList:
             tempImg = drawAdBoundsImg[int(bounds[1]) : int(bounds[3]),  int(bounds[0]) : int(bounds[2])] 
