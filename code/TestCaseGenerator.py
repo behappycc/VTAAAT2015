@@ -8,8 +8,11 @@ class Monkey(TestCaseGenerator):
     def __init__(self):
         pass
 
-    def getTestInput(self, clickableButtonList):      
-        return random.choice(clickableButtonList)
+    def getTestInput(self, clickableButtonList):
+        if len(clickableButtonList) > 0:      
+            return random.choice(clickableButtonList)
+        else:
+            return 'empty'
 
 if __name__ == '__main__':
     x = Monkey()

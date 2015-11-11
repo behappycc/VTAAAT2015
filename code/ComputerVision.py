@@ -44,7 +44,7 @@ class ComputerVision:
             #random choose
             #if self.checkAd(tempImg) == True:
             if self.checkAdddd(tempImg) == True:
-                cv2.rectangle(drawAdBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (0, 255, 0), 5)
+                cv2.rectangle(drawAdBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (255, 255, 0), 5)
             else:
                 cv2.rectangle(drawAdBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (255, 0, 0), 5)
                 rAdClickableButtonLlist.append(bounds)
@@ -124,16 +124,19 @@ class ComputerVision:
         adFlag = False
         adBounds = []
         for attrib in self.clickableButtonList:
+            '''
             #if attrib[6] == 'android.webkit.WebView' and attrib[7] == u'網頁畫面':
             if attrib[6] == 'android.webkit.WebView':
                 adFlag = True
                 print adFlag
                 print attrib[6]
-            elif attrib[7] == 'Interstitial close button':
+            '''
+            if attrib[7] == 'Interstitial close button':
                 adBounds.append(attrib[0])
                 adBounds.append(attrib[1])
                 adBounds.append(attrib[2])
                 adBounds.append(attrib[3])
+                adFlag = True
         print 'adFlag ' + str(adFlag)
         print 'adBounds ' + str(adBounds)
         return adFlag, adBounds
@@ -176,11 +179,11 @@ class ComputerVision:
             tempCnt.append(self.appPackageName)
             listContours.append(tempCnt)
             if cn.checkNodeInRegion(tempCnt[0:2],tempCnt[2:4]) == True:
-                if hier[3] ==  -1 and area > 600 and self.removeRebundantNode(clickableXmlButtonList, tempCnt) == True:
+                if hier[3] ==  -1 and area > 600 and self.removeRedundantNode(clickableXmlButtonList, tempCnt) == True:
                     #tree.add_node(str(tempCnt), 'root')
                     listPrintContours.append(tempCnt)
                     clickableButtonList.append(tempCnt)
-                elif hier[3] != -1 and area > 600 and self.removeRebundantNode(clickableXmlButtonList, tempCnt) == True:
+                elif hier[3] != -1 and area > 600 and self.removeRedundantNode(clickableXmlButtonList, tempCnt) == True:
                     nodeParent = str(listContours[hier[3]])
                     if nodeParent != str(tempCnt):
                         #tree.add_node(str(tempCnt), nodeParent)
@@ -205,7 +208,7 @@ class ComputerVision:
                
         return clickableButtonList
 
-    def removeRebundantNode(self, listXmlNode, cvNode):
+    def removeRedundantNode(self, listXmlNode, cvNode):
         xmlX, xmlY, cvX, cvT = 0, 0, 0, 0
         cvX, cvY = calc.nodeCenter(cvNode)
         listFlag = []

@@ -1,7 +1,7 @@
 {
     "userName" : "hubert",
-    "appPackageName":"idv.nightgospel.TWRailScheduleLookUp",
-    "firstActivityName":"idv.nightgospel.TWRailScheduleLookUp.MainListActivity",
+    "appPackageName":"com.orangefish.app.delicacy",
+    "firstActivityName":"com.orangefish.app.delicacy.main.InitPage",
     "serialNumber":"HT53EYC00527",
     "algorithm":"monkey",
     "sleepTime":1000
