@@ -1,0 +1,20 @@
+利用bounds面積看裡面的東西，如果面積很大裡面沒包東西很可能就是廣靠或外嵌元件
+
+要給猴子一定的返回機率
+
+目前crash是用homePackage是否與xml之package相等來判斷
+
+開一個thread來看logcat
+
+之後可以使用logcat看看
+
+大方向有二
+1. 用python下shell指令撈adb logcat的output
+
+2. adb是server，直接連上去
+1難度低 但效率不好 而且可能會因為是不同process而衝到TaaD的adb 這邊要研究
+2就難度高
+https://docs.python.org/3.5/library/subprocess.html
+1可能會用到的module
+在python裡面透過shell把adb叫起來
+keyword: shell command, stdout redirect

@@ -1,0 +1,50 @@
+#adb shell keyevent
+http://huenlil.pixnet.net/blog/post/23454601-%5B%E8%BD%89%5Dadb-shell-keyevent-
+http://kenji-chao.logdown.com/posts/2013/11/12/android-use-adb-commands-to-perform-the-app-and-send-keyevent
+adb install net.mandaria.tippytipper-1.apk
+adb shell input keyevent 4
+
+adb shell am start -n edu.nyu.cs.omnidroid.app/edu.nyu.cs.omnidroid.app.view.simple.ActivityMain
+
+http://kenji-chao.logdown.com/posts/2013/11/12/android-use-adb-commands-to-perform-the-app-and-send-keyevent
+
+SH44SWW00371 -> Desire816
+HT53EYC00527 -> Desire820s
+adb -s HT53EYC00527 shell am force-stop net.mandaria.tippytipper
+adb -s HT53EYC00527 shell am start net.mandaria.tippytipper/net.mandaria.tippytipperlibrary.activities.TippyTipper
+
+#find package name and first activity(要在放APK的地方下指令)
+aapt dump badging net.mandaria.tippytipper-1.apk
+aapt dump badging com.orangefish.app.delicacy.apk
+aapt dump badging idv.nightgospel.TWRailScheduleLookUp.apk
+aapt dump badging mong.moptt.apk
+aapt dump badging com.sparkslab.dcardreader.apk
+
+aapt dump badging com.baviux.voicechanger.apk
+aapt dump badging com.gramgames.tenten.apk
+aapt dump badging com.nitrome.magictouch.apk
+
+aapt dump badging com.ProjectProverb.Client.apk
+aapt dump badging com.rhmsoft.fm.apk
+aapt dump badging com.sfarbac.recognition.apk
+adb logcat python *:s
+
+http://clip.artchiu.org/2014/10/15/threading-in-python/
+http://yu-liang.logdown.com/posts/184136/python-threading
+http://www.runoob.com/python/python-multithreading.html
+http://puremonkey2010.blogspot.tw/2012/07/python-python-threading.html
+
+python program.py > output.txt
+
+adb -d logcat net.mandaria.tippytipper:I *:S
+
+logcat filter
+
+aapt
+將aapt.exe放入C:\Users\hubert\AppData\Local\Android\sdk\platform-tools
+http://blog.galois21.com/archives/863
+
+apk download
+1. APK Downloader
+2. http://downloader-apk.com/
+http://downloader-apk.com/

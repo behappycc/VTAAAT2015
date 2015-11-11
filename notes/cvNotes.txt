@@ -1,0 +1,54 @@
+openCV
+http://blog.csdn.net/yangtrees/article/details/7458466
+http://blog.csdn.net/jinzhuojun/article/details/8579416
+http://blog.csdn.net/mvtechnology/article/details/7925873
+
+UIautomator
+https://testerhome.com/topics/1871
+https://testerhome.com/topics/1047
+
+畫圖
+http://opencvinpython.blogspot.tw/2014/09/basic-drawing-examples-drawing-line-cv2.html
+img = cv2.imread('1.png',0) 第二個arugment0 -> gray, 1 -> color
+(0,0)為圖形原點在第四象限
+
+PSNR
+http://codex.wiki/question/1790556-7121
+https://cg2010studio.wordpress.com/2013/01/06/opencv-%E5%B3%B0%E5%80%BC%E4%BF%A1%E8%99%9F%E9%9B%9C%E8%A8%8A%E6%AF%94-peak-signal-to-noise-ratio/
+http://docs.opencv.org/doc/tutorials/gpu/gpu-basics-similarity/gpu-basics-similarity.html
+
+辨識條碼
+http://blog.jobbole.com/80448/
+http://gogoprivateryan.blogspot.tw/2015/08/opencv-2-opencv-python.html
+
+JSON
+http://codex.wiki/question/1145226-9939
+http://linnv.gitcafe.io/2015/05/04/json%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%86%99python%E7%89%88/
+
+adb
+https://grymoire.wordpress.com/2014/09/17/remote-input-shell-scripts-for-your-android-device/
+
+subprocess
+https://docs.python.org/2/library/subprocess.html
+https://imsardine.wordpress.com/tech/shell-scripting-in-python/
+http://chang-ning-blog.logdown.com/posts/240138-python-note-subprocess
+http://www.reader.idv.tw/2014/09/subprocess.html
+
+python tree
+http://cbio.ufs.ac.za/live_docs/nbn_tut/trees.html
+http://stackoverflow.com/questions/2358045/how-can-i-implement-a-tree-in-python-are-there-any-built-in-data-structures-in
+http://www.quesucede.com/page/show/id/python-3-tree-implementation
+
+python @property
+http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386820062641f3bcc60a4b164f8d91df476445697b9e000
+
+python *args **kwargs
+http://www.cnblogs.com/fengmk2/archive/2008/04/21/1163766.html
+
+python shell
+http://codex.wiki/post/164287-376
+http://fecbob.pixnet.net/blog/post/43573318-%5Bpython%5D-%E8%A4%87%E8%A3%BD%E6%95%B4%E5%80%8B%E7%9B%AE%E9%8C%84
+http://stackoverflow.com/questions/18383384/python-copy-files-to-a-new-directory-and-rename-if-file-name-already-exists
+
+python sort
+http://swaywang.blogspot.tw/2012/05/pythonpythonpython-sorting.html

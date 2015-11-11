@@ -1,0 +1,104 @@
+http://sdlong.logdown.com/posts/171365
+http://dylandy.github.io/Easy-Git-Tutorial/
+https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/docs/24%20%E4%BD%BF%E7%94%A8%20GitHub%20%E9%81%A0%E7%AB%AF%E5%84%B2%E5%AD%98%E5%BA%AB%20-%20%E5%85%A5%E9%96%80%E7%AF%87.markdown
+http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_tw/ch02.html
+
+
+###
+30day learn git
+
+如果要把一整包都還原，一定要先把說有檔案add，因為有add git才會判斷
+git add . 
+git checkout f1e660e239f4f144010045097f2e9a7223d0ef75
+
+git reset --hard
+
+設定ssh
+http://wiki.csie.ncku.edu.tw/github
+http://jckgeek.blogspot.tw/2014/04/gitgithub.html
+
+第一次commit
+http://judy2r3-blog.logdown.com/posts/257469-git-usage-instruction
+
+換resp位址
+https://help.github.com/articles/changing-a-remote-s-url/
+https://www.snip2code.com/Snippet/458085/Git-Switch-remote-URLs--Git------------
+###setting user email
+git config --global user.name ""
+git config --global user.email ""
+###
+
+###
+git branch教學(good)
+http://blog.wu-boy.com/2011/03/git-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-branch-model-%E5%88%86%E6%94%AF%E6%A8%A1%E7%B5%84%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/
+https://kingofamani.gitbooks.io/git-teach/content/chapter_5/pull.html
+https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/docs/27%20%E9%80%8F%E9%81%8E%E5%88%86%E6%94%AF%E5%9C%A8%E5%90%8C%E4%B8%80%E5%80%8B%E9%81%A0%E7%AB%AF%E5%84%B2%E5%AD%98%E5%BA%AB%E4%B8%AD%E9%80%B2%E8%A1%8C%E7%89%88%E6%8E%A7.markdown
+
+###
+ubuntu新增git並且上傳github
+git init
+git remote add origin git@github.com:SSU-YIN/Cpp_Lab.git (後面看github ssh)
+git status
+git add .
+git commit -m ""
+git pull origin master
+git fetch
+git merge origin/master
+git push origin master
+git push origin <local_branch_name>
+git push --all 將所有分支push
+git push --tag
+git fetch --all --tags
+git merge --no-ff hotfix(看的到線圖)
+###
+
+git diff commit1 commit2
+
+###
+git branch -> known how many branch
+git branch newbranch
+git checkout newbranch -> change branch
+git branch -d newbranch -> del branch
+
+git merge
+git pull
+git merge newbranch
+git branch -d newbranch -> 弄不到就刪掉吧
+git reset --hard ORIG_HEAD -> 錯了就回復
+###
+
+###
+git pull error
+git checkout -f，然后再?行git pull重新checkout
+###
+
+###
+兩個人在開發時碰到有人先改repo要
+先下git fetch與git merge origin/master 兩個加起來等於git pull
+###
+
+###
+如果有在local端有刪除檔案
+git add --all . 這樣git才會知道你刪除的檔案，push上github才會也一起刪掉
+###
+
+###
+程式寫壞了要還原上個狀態
+git add .
+git reset --hard
+###
+
+###
+git rename大小寫
+git mv -f program.cs Program.cs
+https://www.peterdavehello.org/2014/05/change-filename-case-int-git-repository/
+
+
+碰到nano ctrl + X 離開
+
+merge
+1. http://gogojimmy.net/2012/01/21/how-to-use-git-2-basic-usage-and-worflow/
+
+fast-forward
+https://ihower.tw/blog/archives/2620
+

@@ -1,0 +1,10 @@
+admob
+1. https://developers.google.com/mobile-ads-sdk/docs/admob/intermediate?hl=zh-tw
+2. http://ephrain.pixnet.net/blog/post/59829715-%5Bandroid%5D-%E4%BD%BF%E7%94%A8-adblock-plus-for-android-%E6%93%8B%E6%89%8B%E6%A9%9F%E4%B8%8A%E7%9A%84%E5%BB%A3
+3. http://aiur3908.blogspot.tw/2015/07/android-android-studio-admob.html
+4. https://developers.google.com/mobile-ads-sdk/docs/admob/android/quick-start?hl=zh-tw
+5. https://developers.google.com/admob/android/quick-start?hl=zh-tw
+6. https://books.google.com.tw/books?id=0kxBCgAAQBAJ&pg=SA13-PA1&lpg=SA13-PA1&dq=android+%E5%A6%82%E4%BD%95%E6%94%BE%E5%BB%A3%E5%91%8A&source=bl&ots=UdpGKcMwWa&sig=YS_fVlNwMzXg4BTDcM-fRpOxowM&hl=zh-TW&sa=X&ved=0CFgQ6AEwCGoVChMI682wtPLXyAIVAamUCh0qrARt#v=onepage&q=android%20%E5%A6%82%E4%BD%95%E6%94%BE%E5%BB%A3%E5%91%8A&f=false
+
+vtaat2015@
+farnwa
