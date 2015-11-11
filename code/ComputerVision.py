@@ -205,6 +205,12 @@ class ComputerVision:
             cv2.rectangle(drawBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (0, 255, 0), 2)
             cv2.putText(drawBoundsImg,str(i),(int(bounds[0]),int(bounds[1])), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),3)
         cv2.imwrite('12345.png', drawBoundsImg)
+
+        #print xml + CV
+        file = open('xmlcv.txt', 'w')
+        for bounds in clickableButtonList:
+            file.write(str(bounds) + '\n')
+        file.close
                
         return clickableButtonList
 

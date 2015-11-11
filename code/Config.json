@@ -1,7 +1,7 @@
 {
     "userName" : "hubert",
-    "appPackageName":"com.orangefish.app.delicacy",
-    "firstActivityName":"com.orangefish.app.delicacy.main.InitPage",
+    "appPackageName":"net.mandaria.tippytipper",
+    "firstActivityName":"net.mandaria.tippytipperlibrary.activities.TippyTipper",
     "serialNumber":"HT53EYC00527",
     "algorithm":"monkey",
     "sleepTime":1000

@@ -1,4 +1,6 @@
 import random
+import time
+import line_coverage as lc
 from SetConfig import SetConfig
 from AdbExecutor import AdbExecutor
 from ParseXML import ParseXML
@@ -11,11 +13,14 @@ def main():
     #print taskSetting["sleepTime"]
     adb =  AdbExecutor(taskSetting)
 
+    #initial
+    lc.init()
+
     #choose initial restart 
-    #adb.restartAPP()
+    adb.restartAPP()
 
     #print adb.algorithm
-    for i in xrange(20):
+    for i in xrange(50):
         adb.uiDump()
         adb.screencapDump()
         parseXML = ParseXML('0.xml')
@@ -48,7 +53,7 @@ def main():
                     #computerVision.findContoursTest(clickableButtonList)
                     computerVision.compareState()
                     num = random.randint(0,99)
-                    if num <= 10:
+                    if num <= 30:
                         adb.adbExecute('keyevent', inputX, inputY)
                     else:
                         adb.adbExecute('click', inputX, inputY)
@@ -70,7 +75,10 @@ def main():
                     adb.adbExecute('click', inputX, inputY)
             else:
                 adb.restartAPP()
+        time.sleep(2)
+        lc.calculate_line_coverage()
 
+    lc.repot()
     #adb.restartAPP()
 
 if __name__ == '__main__':
