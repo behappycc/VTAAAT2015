@@ -10,7 +10,6 @@ from ComputerVision import ComputerVision
 def main():
     config = SetConfig()
     taskSetting = config.readJson()
-    #print taskSetting["sleepTime"]
     adb =  AdbExecutor(taskSetting)
 
     #initial
@@ -19,8 +18,12 @@ def main():
     #choose initial restart 
     adb.restartAPP()
 
+    #swipe
+    #adb.adbExecute('swipe', 0, 640)
+    #time.sleep(2)
+
     #print adb.algorithm
-    for i in xrange(50):
+    for i in xrange(5):
         adb.uiDump()
         adb.screencapDump()
         parseXML = ParseXML('0.xml')
@@ -53,7 +56,7 @@ def main():
                     #computerVision.findContoursTest(clickableButtonList)
                     computerVision.compareState()
                     num = random.randint(0,99)
-                    if num <= 30:
+                    if num <= 10:
                         adb.adbExecute('keyevent', inputX, inputY)
                     else:
                         adb.adbExecute('click', inputX, inputY)
@@ -78,7 +81,7 @@ def main():
         time.sleep(2)
         lc.calculate_line_coverage(adb.appPackageName)
 
-    lc.repot()
+    lc.report()
     #adb.restartAPP()
 
 if __name__ == '__main__':

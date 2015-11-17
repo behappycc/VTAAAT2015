@@ -30,6 +30,9 @@ class AdbExecutor:
             #adb shell input keyevent 4
             adb = adb + 'keyevent 4'
 
+        elif actionType == 'swipe':
+            adb = adb + 'swipe' + ' ' + str(inputX) + ' ' + str(inputY) + ' ' + str(inputX + 400) + ' ' + str(inputY)
+
         #using adb
         time.sleep(2)
         os.system(adb)

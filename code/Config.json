@@ -3,6 +3,6 @@
     "appPackageName":"net.mandaria.tippytipper",
     "firstActivityName":"net.mandaria.tippytipperlibrary.activities.TippyTipper",
     "serialNumber":"HT53EYC00527",
-    "algorithm":"monkey",
+    "algorithm":"monkeyXML",
     "sleepTime":1000
 }
