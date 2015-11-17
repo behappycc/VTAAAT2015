@@ -20,7 +20,7 @@ def main():
     adb.restartAPP()
 
     #print adb.algorithm
-    for i in xrange(50):
+    for i in xrange(5):
         adb.uiDump()
         adb.screencapDump()
         parseXML = ParseXML('0.xml')
@@ -78,7 +78,7 @@ def main():
         time.sleep(2)
         lc.calculate_line_coverage(adb.appPackageName)
 
-    lc.repot()
+    lc.report()
     #adb.restartAPP()
 
 if __name__ == '__main__':
