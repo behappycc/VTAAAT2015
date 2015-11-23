@@ -20,7 +20,7 @@ def main():
     adb.startAPP()
 
     #print adb.algorithm
-    for i in xrange(5):
+    for i in xrange(500):
         adb.uiDump()
         adb.screencapDump()
         parseXML = ParseXML('0.xml')
