@@ -34,6 +34,10 @@ class AdbExecutor:
         time.sleep(2)
         os.system(adb)
 
+    def startAPP(self):
+        os.system("adb -s "+self.serialNumber+" shell am start "+self.appPackageName+"/"+self.firstActivityName)
+        time.sleep(2)        
+
     def restartAPP(self):
         #os.system("adb root")
         os.system("adb -s "+self.serialNumber+" shell am force-stop "+self.appPackageName)

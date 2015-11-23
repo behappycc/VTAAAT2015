@@ -17,7 +17,7 @@ def main():
     lc.init(adb.appPackageName)
 
     #choose initial restart 
-    adb.restartAPP()
+    adb.startAPP()
 
     #print adb.algorithm
     for i in xrange(5):
