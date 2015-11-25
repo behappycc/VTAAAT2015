@@ -1,0 +1,8 @@
+{
+    "userName" : "hubert",
+    "appPackageName":"tw.com.tradevan.petax.ibx.app.release",
+    "firstActivityName":"com.mitake.android.ibx.Main",
+    "serialNumber":"HT53EYC00527",
+    "algorithm":"monkey",
+    "sleepTime":1000
+}

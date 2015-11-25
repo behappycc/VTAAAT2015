@@ -1,8 +1,0 @@
-{
-    "userName" : "hubert",
-    "appPackageName":"com.sparkslab.dcardreader",
-    "firstActivityName":"com.sparkslab.dcardreader.InitialActivity",
-    "serialNumber":"HT53EYC00527",
-    "algorithm":"monkey",
-    "sleepTime":1000
-}

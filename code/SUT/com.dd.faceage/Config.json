@@ -1,7 +1,7 @@
 {
     "userName" : "hubert",
-    "appPackageName":"mong.moptt",
-    "firstActivityName":"mong.moptt.MainActivity",
+    "appPackageName":"com.dd.faceage",
+    "firstActivityName":"com.dd.faceage.IntroActivity",
     "serialNumber":"HT53EYC00527",
     "algorithm":"monkey",
     "sleepTime":1000
