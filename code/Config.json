@@ -1,7 +1,7 @@
 {
     "userName" : "hubert",
-    "appPackageName":"com.dd.faceage",
-    "firstActivityName":"com.dd.faceage.IntroActivity",
+    "appPackageName":"com.appimc.android.tv4.v5",
+    "firstActivityName":"com.appimc.android.tv4.v5.Splash",
     "serialNumber":"HT53EYC00527",
     "algorithm":"monkey",
     "sleepTime":1000

@@ -18,6 +18,7 @@ def main():
 
     #choose initial restart 
     adb.startAPP()
+    time.sleep(10)
 
     #print adb.algorithm
     for i in xrange(500):
@@ -42,39 +43,54 @@ def main():
                 adb.adbExecute('keyevent', 0, 0)
             else:
                 #if adFlag == True and len(adBounds) > 0:
-                if len(adBounds) > 0:
-                    inputX = (int(adBounds[0]) + int(adBounds[2])) / 2
-                    inputY = (int(adBounds[1]) + int(adBounds[3])) / 2
-                else:   
-                    inputX = (int(testInput[0]) + int(testInput[2])) / 2
-                    inputY = (int(testInput[1]) + int(testInput[3])) / 2
-                
-                if clickableButtonList[0][4] == adb.appPackageName:
-                    #computerVision.findContoursTest(clickableButtonList)
-                    computerVision.compareState()
-                    num = random.randint(0,99)
-                    if num <= 30:
-                        adb.adbExecute('keyevent', inputX, inputY)
-                    else:
-                        adb.adbExecute('click', inputX, inputY)
-                else:     
-                    adb.restartAPP()
+                try: 
+                    if len(adBounds) > 0:
+                        inputX = (int(adBounds[0]) + int(adBounds[2])) / 2
+                        inputY = (int(adBounds[1]) + int(adBounds[3])) / 2
+                    else:   
+                        inputX = (int(testInput[0]) + int(testInput[2])) / 2
+                        inputY = (int(testInput[1]) + int(testInput[3])) / 2
+                except  ValueError:
+                    print 'ValueError'
+                    time.sleep(2)
+                try:
+                    if clickableButtonList[0][4] == adb.appPackageName:
+                        #computerVision.findContoursTest(clickableButtonList)
+                        computerVision.compareState()
+                        num = random.randint(0,99)
+                        if num <= 30:
+                            adb.adbExecute('keyevent', inputX, inputY)
+                        else:
+                            adb.adbExecute('click', inputX, inputY)
+                    else:     
+                        adb.restartAPP()
+                except IndexError:
+                    print 'IndexError'
+                    time.sleep(2)
 
         elif taskSetting["algorithm"] == "monkeyXML":
             from TestCaseGenerator import Monkey
             gen = Monkey()
             testInput = gen.getTestInput(clickableButtonList)
-            inputX = (int(testInput[0]) + int(testInput[2])) / 2
-            inputY = (int(testInput[1]) + int(testInput[3])) / 2
+            try :
+                inputX = (int(testInput[0]) + int(testInput[2])) / 2
+                inputY = (int(testInput[1]) + int(testInput[3])) / 2
+            except  ValueError:
+                print 'ValueError'
+                time.sleep(2)
 
-            if clickableButtonList[0][4] == adb.appPackageName:
-                num = random.randint(0,99)
-                if num <= 10:
-                    adb.adbExecute('keyevent', inputX, inputY)
+            try:
+                if clickableButtonList[0][4] == adb.appPackageName:
+                    num = random.randint(0,99)
+                    if num <= 10:
+                        adb.adbExecute('keyevent', inputX, inputY)
+                    else:
+                        adb.adbExecute('click', inputX, inputY)
                 else:
-                    adb.adbExecute('click', inputX, inputY)
-            else:
-                adb.restartAPP()
+                    adb.restartAPP()
+            except IndexError:
+                print 'IndexError'
+                time.sleep(2)
         time.sleep(2)
         lc.calculate_line_coverage(adb.appPackageName)
 

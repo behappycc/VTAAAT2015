@@ -157,7 +157,10 @@ class ComputerVision:
         edged = cv2.Canny(imgray, 30, 200)
         cv2.imwrite('canny.png',edged)
         image, contours, hierarchy = cv2.findContours(edged,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
-        print 'origin ' + 'contours: ' + str(len(contours)) + ', ' + 'hierarchy: ' + str(len(hierarchy[0]))
+        try:
+            print 'origin ' + 'contours: ' + str(len(contours)) + ', ' + 'hierarchy: ' + str(len(hierarchy[0]))
+        except TypeError:
+            print 'TypeError'
 
         #build tree
         cn = CheckNode(123, '[0,48][720,1180]', 'removeExternalNode')
@@ -191,7 +194,7 @@ class ComputerVision:
                         clickableButtonList.append(tempCnt)
         #tree.display('root')
         print 'remove small nodes and out of ROI nodes: ' + str(len(listPrintContours))
-        print clickableButtonList
+        #print clickableButtonList
 
         
         #draw xml
