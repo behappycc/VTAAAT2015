@@ -1,8 +1,8 @@
 {
     "userName" : "hubert",
-    "appPackageName":"com.appimc.android.tv4.v5",
-    "firstActivityName":"com.appimc.android.tv4.v5.Splash",
+    "appPackageName":"com.gramgames.tenten",
+    "firstActivityName":"com.prime31.UnityPlayerNativeActivity",
     "serialNumber":"HT53EYC00527",
-    "algorithm":"monkey",
+    "algorithm":"monkeyCV",
     "sleepTime":1000
 }

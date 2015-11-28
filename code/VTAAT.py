@@ -31,7 +31,7 @@ def main():
         computerVision.drawBounds()    
         rAdClickableButtonLlist = computerVision.drawAdBounds()
 
-        if taskSetting["algorithm"] == "monkey":
+        if taskSetting["algorithm"] == "monkeyCV":
             from TestCaseGenerator import Monkey
             gen = Monkey()
             adFlag, adBounds = computerVision.checkInterstitial()
