@@ -31,7 +31,7 @@ class ComputerVision:
         for bounds in self.clickableButtonList:
             cv2.rectangle(drawBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (255, 0, 0), 5)
         cv2.imwrite('123.png', drawBoundsImg)
-        print drawBoundsImg.shape
+        print 'device resolution: '  + str(drawBoundsImg.shape)
 
     #draw xml clickable buttons and  ADs
     def drawAdBounds(self):
@@ -137,8 +137,8 @@ class ComputerVision:
                 adBounds.append(attrib[2])
                 adBounds.append(attrib[3])
                 adFlag = True
-        print 'adFlag ' + str(adFlag)
-        print 'adBounds ' + str(adBounds)
+        print 'interstitial adFlag: ' + str(adFlag)
+        print 'interstitial adBounds: ' + str(adBounds)
         return adFlag, adBounds
 
     def checkBoundsSquare(self, x1, y1, x2, y2):
@@ -148,7 +148,7 @@ class ComputerVision:
         else:
             return False
 
-    def findContoursForNoClickable(self, clickableButtonList):
+    def findContoursForNoClickable(self, clickableButtonList, ROI):
         clickableXmlButtonList = copy.deepcopy(self.clickableButtonList)
         im = cv2.imread('0.png')
         drawBoundsImg = im
@@ -163,7 +163,8 @@ class ComputerVision:
             print 'TypeError'
 
         #build tree
-        cn = CheckNode(123, '[0,48][720,1180]', 'removeExternalNode')
+        #cn = CheckNode(123, '[0,48][720,1180]', 'removeExternalNode')
+        cn = CheckNode(123, ROI, 'removeExternalNode')
         cn.initialNode()
         tree = Tree()
         tree.add_node('root')
@@ -279,8 +280,6 @@ class ComputerVision:
 
         #TODO click button and merge same state button
 
-
-
         #draw contours
         for i, bounds in enumerate(listPrintContours):
             cv2.rectangle(drawBoundsImg, (int(bounds[0]), int(bounds[1])), (int(bounds[2]), int(bounds[3])), (0, 255, 0), 5)
@@ -362,7 +361,7 @@ class ComputerVision:
         listCheckState = []
         for i in xrange(len(imgFiles)):
             listCheckState.append(calc.pixelCompare('0.png', pathToStateData + imgFiles[i], 0.1))
-        print listCheckState
+        print "check state: " + str(listCheckState)
         #all -> and list, any or list
         if all(listCheckState) == True:
             for i in xrange(len(imgFiles) +1 ):
@@ -370,7 +369,12 @@ class ComputerVision:
                     shutil.copy('0.png', pathToStateData + str(i) + '.png')
                     shutil.copy('0.xml', pathToStateData + str(i) + '.xml')
                     shutil.copy('xmlcv.txt', './state/' + str(i) + '.txt')
-
+                    print 'state: ' + str(i)
+        else:
+            for i,j  in enumerate(listCheckState):
+                if j == False:
+                    print 'state: ' + str(i)
+                    break 
         '''
         #print rContours
         file = open('rcontours.txt', 'w')

@@ -10,9 +10,18 @@ class AdbExecutor:
         self.userName = taskSetting["userName"]
         self.appPackageName = taskSetting["appPackageName"]
         self.firstActivityName = taskSetting["firstActivityName"]
+        self.instrument = taskSetting["instrument"]
         self.serialNumber = taskSetting["serialNumber"]
+        self.ROI = taskSetting["ROI"]
         self.algorithm = taskSetting["algorithm"]
+        self.monkeyLength = taskSetting["monkeyLength"]
+        self.traceLength = taskSetting["traceLength"]
+        self.sleepTime = taskSetting["sleepTime"]
 
+    @property
+    def logPath(self):
+        return self._logPath
+    
     def uiDump(self):
         os.system("adb shell uiautomator dump /data/local/tmp/0.xml")
         os.system("adb pull /data/local/tmp/0.xml")
@@ -20,6 +29,11 @@ class AdbExecutor:
     def screencapDump(self):
         os.system('adb shell screencap -p /sdcard/0.png')
         os.system('adb pull /sdcard/0.png')
+
+    def generateLog(self):
+        #self.logPath = os.path.join(traceNumDir,"log"+str(step)+".txt")
+        #os.system("adb -s "+self.serialNumber+" logcat -d AndroidRuntime:E "+self.appPackageName+":D *:S > "+self.logPath)
+        os.system("adb -s "+self.serialNumber+" logcat -d AndroidRuntime:E "+self.appPackageName+":D *:S > "+"/sdcard/log.txt")
 
     def adbExecute(self, actionType, inputX, inputY):
         adb = 'adb -s ' + self.serialNumber + ' shell input '
@@ -43,3 +57,4 @@ class AdbExecutor:
         os.system("adb -s "+self.serialNumber+" shell am force-stop "+self.appPackageName)
         os.system("adb -s "+self.serialNumber+" shell am start "+self.appPackageName+"/"+self.firstActivityName)
         time.sleep(4)
+
