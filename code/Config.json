@@ -2,7 +2,7 @@
     "userName" : "hubert",
     "appPackageName":"com.taad.test",
     "firstActivityName":"com.taad.test.MainActivity",
-    "instrument":"True",
+    "instrument":"False",
     "serialNumber":"HT53EYC00527",
     "ROI":"[0,48][720,1180]",
     "algorithm":"monkeyCV",

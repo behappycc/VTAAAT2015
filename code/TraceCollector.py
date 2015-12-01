@@ -23,13 +23,13 @@ class TraceCollector:
 
         for i in xrange(numTestCase):
             adbList = []
+            isPass = True
             if i != 0:
                 self.adb.restartAPP()
                 time.sleep(sleepTime)
             for j in xrange(traceLength):
                 print 'testcase: ' + str(i)
-                print 'tracelength: ' + str(j)
-                isPass = True
+                print 'tracelength: ' + str(j)               
                 self.adb.uiDump()
                 self.adb.screencapDump()               
                 parseXML = ParseXML('0.xml')
@@ -116,6 +116,7 @@ class TraceCollector:
                 if csResult != "pass":
                     isPass = False
                     adbList.append(str(csResult))
+                    print '-------------------------------------------------------'
                     break
 
                 if self.taskSetting["instrument"] == "True":
@@ -126,21 +127,20 @@ class TraceCollector:
                 print adbList
             #End of a trace, and start writing trace.txt
             if isPass == True:
-                print 'testcase: corrected'
+                print 'testcase: pass'
                 file = open('./state/trace.txt', 'a')
-                file.write('---------- testcase ' + str(i) + ' corrected----------' + '\n')  
+                file.write('---------- testcase ' + str(i) + ' pass----------' + '\n')  
                 for adb in adbList:                  
                     file.write(str(adb) + '\n')
                 file.close
             else:
-                print 'testcase: failed'
-                file.write('---------- testcase ' + str(i) + ' failed----------' + '\n')
+                print 'testcase: fail'
+                file.write('---------- testcase ' + str(i) + ' fail----------' + '\n')
                 file = open('./state/trace.txt', 'a')
                 for adb in adbList:
                     file.write(str(adb) + '\n')
                 file.close
                     
-
     def checkCodeStack(self,log):
         logFile = open(log,"r")
         form = logFile.readlines()
