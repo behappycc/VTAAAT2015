@@ -2,7 +2,11 @@
     "userName" : "hubert",
     "appPackageName":"net.mandaria.tippytipper",
     "firstActivityName":"net.mandaria.tippytipperlibrary.activities.TippyTipper",
+    "instrument":"True",
     "serialNumber":"HT53EYC00527",
-    "algorithm":"monkey",
-    "sleepTime":1000
+    "ROI":"[0,48][720,1180]",
+    "algorithm":"monkeyCV",
+    "monkeyLength":"20",
+    "traceLength":"5",
+    "sleepTime":"2"
 }

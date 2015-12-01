@@ -18,10 +18,6 @@ class AdbExecutor:
         self.traceLength = taskSetting["traceLength"]
         self.sleepTime = taskSetting["sleepTime"]
 
-    @property
-    def logPath(self):
-        return self._logPath
-    
     def uiDump(self):
         os.system("adb shell uiautomator dump /data/local/tmp/0.xml")
         os.system("adb pull /data/local/tmp/0.xml")

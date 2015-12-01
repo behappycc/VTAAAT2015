@@ -14,7 +14,7 @@ def main():
         lc.init(adb.appPackageName)
 
         #choose initial restart 
-        adb.startAPP()
+        adb.restartAPP()
         time.sleep(5)
 
         #collect trace
@@ -26,7 +26,7 @@ def main():
         #adb.restartAPP()
     elif taskSetting["instrument"] == "False":
         #choose initial restart 
-        adb.startAPP()
+        adb.restartAPP()
         time.sleep(5)
 
         #collect trace

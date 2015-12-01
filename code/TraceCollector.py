@@ -16,7 +16,13 @@ class TraceCollector:
         traceLength = int(self.taskSetting["traceLength"])
         sleepTime = int(self.taskSetting["sleepTime"])
 
+        #record start
+        file = open('./state/trace.txt', 'w')
+        file.write('********** start **********' + '\n')  
+        file.close
+
         for i in xrange(numTestCase):
+            adbList = []
             if i != 0:
                 self.adb.restartAPP()
                 time.sleep(sleepTime)
@@ -25,8 +31,7 @@ class TraceCollector:
                 print 'tracelength: ' + str(j)
                 isPass = True
                 self.adb.uiDump()
-                self.adb.screencapDump()
-                self.adb.generateLog()
+                self.adb.screencapDump()               
                 parseXML = ParseXML('0.xml')
                 xml = parseXML.readTree()
                 clickableButtonList = parseXML.checkClickableButton(xml)
@@ -43,6 +48,7 @@ class TraceCollector:
                     clickableCvButtonList = computerVision.findContoursForNoClickable(rAdClickableButtonLlist, self.taskSetting["ROI"])
                     testInput = gen.getTestInput(clickableCvButtonList)
                     if testInput == 'empty':
+                        adbList.append('adb -s ' + str(self.adb.serialNumber) +  ' shell input ' + 'keyevent 4') 
                         self.adb.adbExecute('keyevent', 0, 0)
                     else:
                         #if adFlag == True and len(adBounds) > 0:
@@ -61,11 +67,15 @@ class TraceCollector:
                                 #computerVision.findContoursTest(clickableButtonList)
                                 computerVision.compareState()
                                 num = random.randint(0,99)
-                                if num <= 30:
+                                if num <= 10:                          
+                                    adbList.append('adb -s ' + str(self.adb.serialNumber) +  ' shell input ' + 'keyevent 4') 
                                     self.adb.adbExecute('keyevent', inputX, inputY)
                                 else:
+                                    adbList.append('adb -s ' + str(self.adb.serialNumber) +  ' shell input ' + 'tap ' + str(inputX) + ' ' + str(inputY))
                                     self.adb.adbExecute('click', inputX, inputY)
-                            else:     
+                            else:
+                                adbList.append('adb -s ' + str(self.adb.serialNumber) + " shell am force-stop " + str(self.adb.appPackageName))
+                                adbList.append('adb -s ' + str(self.adb.serialNumber) + " shell am start " + str(self.adb.appPackageName) + '/' + str(self.adb.firstActivityName))
                                 self.adb.restartAPP()
                         except IndexError:
                             print 'IndexError'
@@ -86,10 +96,14 @@ class TraceCollector:
                         if clickableButtonList[0][4] == self.adb.appPackageName:
                             num = random.randint(0,99)
                             if num <= 10:
+                                adbList.append('adb -s ' + str(self.adb.serialNumber) +  ' shell input ' + 'keyevent 4')
                                 self.adb.adbExecute('keyevent', inputX, inputY)
                             else:
+                                adbList.append('adb -s ' + str(self.adb.serialNumber) +  ' shell input ' + 'tap ' + str(inputX) + ' ' + str(inputY))
                                 self.adb.adbExecute('click', inputX, inputY)
                         else:
+                            adbList.append('adb -s ' + str(self.adb.serialNumber) + " shell am force-stop " + str(self.adb.appPackageName))
+                            adbList.append('adb -s ' + str(self.adb.serialNumber) + " shell am start " + str(self.adb.appPackageName) + '/' + str(self.adb.firstActivityName))
                             self.adb.restartAPP()
                     except IndexError:
                         print 'IndexError'
@@ -97,9 +111,11 @@ class TraceCollector:
                 time.sleep(sleepTime)
 
                 #check code stack and log files
+                self.adb.generateLog()
                 csResult = self.checkCodeStack('./state/log.txt')
                 if csResult != "pass":
                     isPass = False
+                    adbList.append(str(csResult))
                     break
 
                 if self.taskSetting["instrument"] == "True":
@@ -107,11 +123,22 @@ class TraceCollector:
                 else:
                     print '-------------------------------------------------------'
 
+                print adbList
             #End of a trace, and start writing trace.txt
             if isPass == True:
-                pass
+                print 'testcase: corrected'
+                file = open('./state/trace.txt', 'a')
+                file.write('---------- testcase ' + str(i) + ' corrected----------' + '\n')  
+                for adb in adbList:                  
+                    file.write(str(adb) + '\n')
+                file.close
             else:
-                pass
+                print 'testcase: failed'
+                file.write('---------- testcase ' + str(i) + ' failed----------' + '\n')
+                file = open('./state/trace.txt', 'a')
+                for adb in adbList:
+                    file.write(str(adb) + '\n')
+                file.close
                     
 
     def checkCodeStack(self,log):
@@ -127,7 +154,7 @@ class TraceCollector:
 
         if len(form) != 0:
             print("[Error] code stack = ")
-            print(form)
+            print form
             return form
         else:
             return "pass"
