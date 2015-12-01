@@ -212,8 +212,17 @@ class ComputerVision:
 
         #print xml + CV
         file = open('xmlcv.txt', 'w')
+        file.write('**********xml bounds**********' + '\n')
+        flag = False
         for bounds in clickableButtonList:
-            file.write(str(bounds) + '\n')
+            if len(bounds) != 5:
+                file.write(str(bounds) + '\n')
+            elif len(bounds) == 5 and flag ==False:
+                file.write('**********cv bounds**********' + '\n')
+                file.write(str(bounds) + '\n')
+                flag = True
+            else:
+                file.write(str(bounds) + '\n')
         file.close
                
         return clickableButtonList

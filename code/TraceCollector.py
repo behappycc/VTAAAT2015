@@ -28,6 +28,8 @@ class TraceCollector:
                 self.adb.restartAPP()
                 time.sleep(sleepTime)
             for j in xrange(traceLength):
+                self.adb.clearLogcat()
+                print '-------------------------------------------------------'
                 print 'testcase: ' + str(i)
                 print 'tracelength: ' + str(j)               
                 self.adb.uiDump()
@@ -116,15 +118,15 @@ class TraceCollector:
                 if csResult != "pass":
                     isPass = False
                     adbList.append(str(csResult))
-                    print '-------------------------------------------------------'
                     break
 
                 if self.taskSetting["instrument"] == "True":
                     lc.calculate_line_coverage(self.adb.appPackageName)
                 else:
-                    print '-------------------------------------------------------'
+                    pass
 
                 print adbList
+
             #End of a trace, and start writing trace.txt
             if isPass == True:
                 print 'testcase: pass'

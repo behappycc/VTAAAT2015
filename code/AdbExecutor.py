@@ -52,3 +52,5 @@ class AdbExecutor:
         os.system("adb -s "+self.serialNumber+" shell am start "+self.appPackageName+"/"+self.firstActivityName)
         time.sleep(4)
 
+    def clearLogcat(self):
+        os.system("adb -s "+self.serialNumber+" logcat -c")
