@@ -48,7 +48,7 @@ class ParseXML:
                 tempbounds.append(node[0].attrib['class'])
                 tempbounds.append(node[0].attrib['content-desc'])
                 clickableXmlList.append(tempbounds)
-        print clickableXmlList
+        #print clickableXmlList
         return clickableXmlList
             
     def testFunc(self):

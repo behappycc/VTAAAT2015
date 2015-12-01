@@ -48,3 +48,7 @@ apk download
 1. APK Downloader
 2. http://downloader-apk.com/
 http://downloader-apk.com/
+
+logcat
+error
+adb logcat *:e

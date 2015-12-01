@@ -1,7 +1,7 @@
 {
     "userName" : "hubert",
-    "appPackageName":"com.rhmsoft.fm",
-    "firstActivityName":"com.rhmsoft.fm.FileManager",
+    "appPackageName":"com.psvn.PepaDirtyPuddlesFREE",
+    "firstActivityName":"com.android.Billing",
     "serialNumber":"HT53EYC00527",
     "algorithm":"monkey",
     "sleepTime":1000

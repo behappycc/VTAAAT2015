@@ -1,0 +1,8 @@
+{
+    "userName" : "hubert",
+    "appPackageName":"com.roostergames.hillclimbtruckracing3",
+    "firstActivityName":"com.unity3d.player.UnityPlayerNativeActivity",
+    "serialNumber":"HT53EYC00527",
+    "algorithm":"monkey",
+    "sleepTime":1000
+}

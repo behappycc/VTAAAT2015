@@ -1,8 +1,0 @@
-{
-    "userName" : "hubert",
-    "appPackageName":"com.baviux.voicechanger",
-    "firstActivityName":"com.baviux.voicechanger.activities.MainActivity",
-    "serialNumber":"HT53EYC00527",
-    "algorithm":"monkey",
-    "sleepTime":1000
-}

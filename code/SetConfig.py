@@ -14,4 +14,4 @@ class SetConfig:
 if __name__ == '__main__':
     x = SetConfig()
     config = x.readJson()
-    print config["sleepTime"]
+    print config["traceLength"]
