@@ -96,13 +96,12 @@ class TraceCollector:
                         time.sleep(sleepTime)
                 time.sleep(sleepTime)
 
-                '''
                 #check code stack and log files
-                csResult = self.checkCodeStack(adb.logPath())
+                csResult = self.checkCodeStack('./state/log.txt')
                 if csResult != "pass":
                     isPass = False
                     break
-                '''
+
                 if self.taskSetting["instrument"] == "True":
                     lc.calculate_line_coverage(self.adb.appPackageName)
                 else:

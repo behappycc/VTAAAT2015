@@ -31,9 +31,7 @@ class AdbExecutor:
         os.system('adb pull /sdcard/0.png')
 
     def generateLog(self):
-        #self.logPath = os.path.join(traceNumDir,"log"+str(step)+".txt")
-        #os.system("adb -s "+self.serialNumber+" logcat -d AndroidRuntime:E "+self.appPackageName+":D *:S > "+self.logPath)
-        os.system("adb -s "+self.serialNumber+" logcat -d AndroidRuntime:E "+self.appPackageName+":D *:S > "+"/sdcard/log.txt")
+        os.system("adb -s "+self.serialNumber+" logcat -d AndroidRuntime:E "+self.appPackageName+":D *:S > "+"./state/log.txt")
 
     def adbExecute(self, actionType, inputX, inputY):
         adb = 'adb -s ' + self.serialNumber + ' shell input '
