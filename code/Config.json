@@ -1,12 +1,12 @@
 {
     "userName" : "hubert",
-    "appPackageName":"com.taad.test",
-    "firstActivityName":"com.taad.test.MainActivity",
-    "instrument":"False",
+    "appPackageName":"idv.nightgospel.TWRailScheduleLookUp",
+    "firstActivityName":"idv.nightgospel.TWRailScheduleLookUp.MainListActivity",
+    "instrument":"True",
     "serialNumber":"HT53EYC00527",
     "ROI":"[0,48][720,1180]",
     "algorithm":"monkeyCV",
-    "monkeyLength":"8",
-    "traceLength":"2",
+    "monkeyLength":"200",
+    "traceLength":"5",
     "sleepTime":"2"
 }
