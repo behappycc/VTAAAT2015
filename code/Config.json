@@ -1,12 +1,12 @@
 {
     "userName" : "hubert",
-    "appPackageName":"idv.nightgospel.TWRailScheduleLookUp",
-    "firstActivityName":"idv.nightgospel.TWRailScheduleLookUp.MainListActivity",
-    "instrument":"True",
-    "serialNumber":"HT53EYC00527",
+    "appPackageName":"com.chocolabs.app.chocotv",
+    "firstActivityName":"com.chocolabs.app.chocotv.activity.DMHomeActivity",
+    "instrument":"False",
+    "serialNumber":"SH44SWW00371",
     "ROI":"[0,48][720,1180]",
     "algorithm":"monkeyCV",
-    "monkeyLength":"200",
-    "traceLength":"5",
+    "monkeyLength":"500",
+    "traceLength":"20",
     "sleepTime":"2"
 }

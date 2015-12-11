@@ -1,7 +1,7 @@
 {
     "userName" : "hubert",
-    "appPackageName":"com.gyokovsolutions.gnettrackproplus_hk2",
-    "firstActivityName":"com.gyokovsolutions.gnettrackproplus_hk2.MainActivity",
+    "appPackageName":"com.chocolabs.app.chocotv",
+    "firstActivityName":"com.chocolabs.app.chocotv.activity.DMHomeActivity",
     "instrument":"False",
     "serialNumber":"HT53EYC00527",
     "ROI":"[0,48][720,1180]",

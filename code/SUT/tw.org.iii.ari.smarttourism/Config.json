@@ -1,0 +1,12 @@
+{
+    "userName" : "hubert",
+    "appPackageName":"tw.org.iii.ari.smarttourism",
+    "firstActivityName":"tw.org.iii.ari.smarttourism.view.SplashScreen",
+    "instrument":"False",
+    "serialNumber":"HT53EYC00527",
+    "ROI":"[0,48][720,1180]",
+    "algorithm":"monkeyCV",
+    "monkeyLength":"8",
+    "traceLength":"2",
+    "sleepTime":"2"
+}
